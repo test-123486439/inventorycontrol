@@ -20,6 +20,12 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
+                    <a href="{% url 'inventory:inventory_create' %}">新規投稿</a>
+                    {% if user.is_authenticated %}
+                    <p>ログイン中: {{ user.username }}</p>
+                    {% else %}
+                    <p>ログインしていません</p>
+                    {% endif %}
                     {% for record in orderby_records %}
                     <!-- Post preview-->
                     <div class="post-preview">

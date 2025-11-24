@@ -1,0 +1,9 @@
+<!-- 静的ファイルのデプロイ方法 -->
+https://docs.djangoproject.com/en/5.0/howto/static-files/deployment/
+https://help.pythonanywhere.com/pages/DeployExistingDjangoProject/
+https://help.pythonanywhere.com/pages/DjangoStaticFiles/
+
+
+
+制作したurl
+https://test123486439.pythonanywhere.com/

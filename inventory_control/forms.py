@@ -6,6 +6,10 @@ class InventoryUpdateForm(forms.ModelForm):
     class Meta:
         model = InventoryPost
         fields = ['quantity']
+class InventoryPostForm(forms.ModelForm):
+    class Meta:
+        model = InventoryPost
+        fields = ['title', 'content', 'category', 'quantity']
 
 class ContactForm(forms.Form):
     # フォームのフィールドをクラス変数として定義
@@ -33,13 +37,13 @@ class ContactForm(forms.Form):
         self.fields['email'].widget.attrs['class'] = 'form-control'
 
         # titleフィールドのplaceholderにメッセージを登録
-        self.fields['title'].widget.attrs['palceholder'] = \
+        self.fields['title'].widget.attrs['placeholder'] = \
             'タイトルを入力してください'
         # titleフィールドを出力する<input>タグのclass属性を指定
         self.fields['title'].widget.attrs['class'] = 'form-control'
 
         # messageフィールドのplaceholderにメッセージを登録
-        self.fields['message'].widget.attrs['paceholder'] = \
+        self.fields['message'].widget.attrs['placeholder'] = \
             'メッセージを入力してください'
         # messageフィールドを出力する<input>タグのclass属性を設定
         self.fields['message'].widget.attrs['class'] = 'form-control'

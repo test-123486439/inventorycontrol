@@ -2,11 +2,14 @@ from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 
 # Create your views here.
-from django.views.generic import TemplateView,ListView,DetailView,DeleteView,FormView
+from django.views.generic import TemplateView,ListView,DetailView,DeleteView,FormView,CreateView
 from .forms import InventoryUpdateForm,ContactForm
 from django.contrib import messages
 from django.core.mail import EmailMessage
 from .models import InventoryPost
+from .forms import InventoryPostForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 class IndexView(ListView):
     template_name='index.html'
@@ -18,6 +21,7 @@ class IndexView(ListView):
 class InventoryDetail(DetailView):
     template_name='post.html'
     model=InventoryPost
+    login_url = '/accounts/login/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -31,9 +35,19 @@ class InventoryDetail(DetailView):
             form.save()
             return redirect('inventory:inventory_detail', pk=self.object.pk)
         return self.render_to_response(self.get_context_data(form=form))
+class InventoryCreateView(LoginRequiredMixin, CreateView):
+    model = InventoryPost
+    form_class = InventoryPostForm
+    template_name = 'post_form.html'
+    success_url = reverse_lazy('inventory:index')
+    login_url = '/accounts/login/'   
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
-class InventoryDeleteView(DeleteView):
+class InventoryDeleteView(LoginRequiredMixin,DeleteView):
     model=InventoryPost
     template_name='Inventory_delete.html'
     success_url= reverse_lazy('inventory:index')
