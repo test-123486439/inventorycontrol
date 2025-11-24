@@ -1,0 +1,111 @@
+<!-- ベーステンプレートを適用する -->
+{% extends 'base.html' %}
+<!--
+ 静的ファイルのURLを生成するstaticタグのロードは
+ 個々のページで行うことが必要
+ -->
+{% load static %}
+<!-- ヘッダー情報のページタイトルは
+  ベーステンプレートを利用するページで設定する -->
+{% block title %}Django's Blog{% endblock %}
+
+<!--
+<!DOCTYPE html>以下、<head>～</head>まで
+ベーステンプレートで設定済みなので削除
+-->
+
+    <!-- <body>と<nav>～</nav>はベーステンプレートで設定済みなので削除 -->
+        <!-- Navigation-->
+        
+        <!-- Page Header-->
+        <!--
+        ページのヘッダーはベーステンプレートを使用するページで設定するので
+        テンプレートタグで囲む
+         -->
+        {% block header %}
+        <!-- ヘッダーの背景イメージのリンク先url()の引数をstaticタグに書き換え-->
+        <header class="masthead"
+                {% if object.category == "食料品" %}
+                    style="background-image: url({% static 'assets/img/groceries.jpg' %})"
+                {% elif object.category == "日用品" %}
+                    style="background-image: url({% static 'assets/img/dailynecessities.jpg' %})"
+                {% elif object.category == "生活用品" %}
+                    style="background-image: url({% static 'assets/img/dailygoods.jpg' %})"
+                {% else %}
+                    style="background-image: url({% static 'assets/img/post.jpg' %})"
+                {% endif %}
+        >
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <!--
+                            投稿記事のタイトル
+                            <h1>タグの要素を書き換える
+                            レコードをobjectで参照し、titleフィールドの値を出力
+                            -->
+                            <h1>{{object.title}}</h1>
+                            <!--
+                            サブタイトル
+                            <h2>タグの要素を書き換える
+                            レコードをobjectで参照し、
+                            contentフィールドの値を30文字以内で出力
+                            -->
+                            <!-- <h2 class="subheading">
+                                {{object.content|truncatechars:30}}</h2>-->
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- ページのヘッダーに適用するテンプレートタグの終了-->
+        {% endblock %}
+
+        <!-- Post Content-->
+        <!--
+        <article>～</article>はベーステンプレートを
+        使用するページで設定するのでテンプレートタグで囲む-->
+        {% block contents %}
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+
+                        <!--
+                        以下<div>タグの要素を書き換える
+                        レコードをobjectで参照し、contentフィールドの値を出力
+                        <p>～</p>の要素とすることで全体を1つの段落にする -->
+                        <p>{{object.content}}</p>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary">在庫数を更新</button>
+                        </form>
+
+                         <span class="meta">
+                                <!-- 投稿日時とカテゴリ -->
+                                <!-- トップページにリンクする -->
+                                <a href={% url 'inventory:index' %}>
+                                <!-- 投稿日時としてposted_atフィールドを出力-->
+                                {{object.posted_at}}に投稿／カテゴリ:
+                                <!-- categoryフィールドを出力-->
+                                {{object.category}}</span>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'inventory:inventory_delete' object.pk %}" 
+   class="btn btn-danger">削除</a>
+
+        </article>
+        <!-- 水平線を追加-->
+        <hr>
+        <!-- テンプレートタグの終了-->
+        {% endblock %}
+        
+        <!-- Footer-->
+        <!-- <footer>以下はベーステンプレートで設定するので削除-->
+
+
+
+            <!-- https://daeudaeu.com/django-updateview/#UpdateView-7 -->
