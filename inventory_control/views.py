@@ -49,8 +49,9 @@ class InventoryCreateView(LoginRequiredMixin, CreateView):
 
 class InventoryDeleteView(LoginRequiredMixin,DeleteView):
     model=InventoryPost
-    template_name='Inventory_delete.html'
+    template_name='inventory_delete.html'
     success_url= reverse_lazy('inventory:index')
+    login_url ='/login/'
     
     def delete(self, request, *args, **kwargs):
         return super().delete(request, *args, **kwargs)
