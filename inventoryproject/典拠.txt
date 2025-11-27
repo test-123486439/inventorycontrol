@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/stable/ref/templates/api/#django-contrib-auth-
 制作したurl
 https://test123486439.pythonanywhere.com/
 ログイン
-id  test2
-pass test2
+id  test
+pass test
 adminから入ってログインしないと新規登録できない
 エラーになる
