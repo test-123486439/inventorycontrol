@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block contents %}
 <div style="text-align:center; margin-top:50px;">
     <h2>ログイン</h2>
+
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

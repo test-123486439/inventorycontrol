@@ -1,12 +1,13 @@
 from django.urls import path,include
 from . import views
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+
 
 app_name='inventory'
 
 urlpatterns = [
     path('', views.IndexView.as_view(),name='index'),
-    path('accounts/', include('django.contrib.auth.urls')), 
     path('blog-detail/<int:pk>/',
          views.InventoryDetail.as_view(),
          name='inventory_detail'),
@@ -28,6 +29,13 @@ urlpatterns = [
           name='contact'),
      path('inventory/new/',
            views.InventoryCreateView.as_view(), name='inventory_create'),
+      path('login/',
+         # ログイン用のテンプレート(フォーム)をレンダリング
+         auth_views.LoginView.as_view(template_name='login.html'),
+         name='login'
+         ),    
+     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+
 
 
     ]

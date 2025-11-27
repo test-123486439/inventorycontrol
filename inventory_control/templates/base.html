@@ -32,7 +32,12 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'inventory:daily_necessities_list' %}">日用品</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'inventory:groceries_list' %}">食料品</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'inventory:contact' %}">お問い合わせ</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'inventory:logout' %}">ログアウト</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'inventory:login' %}">ログイン</a></li>
 
+                        {% endif %}
                     </ul>
                 </div>
             </div>

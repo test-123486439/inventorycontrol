@@ -4,6 +4,13 @@ https://help.pythonanywhere.com/pages/DeployExistingDjangoProject/
 https://help.pythonanywhere.com/pages/DjangoStaticFiles/
 
 
+ログイン中表示
+https://docs.djangoproject.com/en/stable/ref/templates/api/#django-contrib-auth-context-processors-auth
 
 制作したurl
 https://test123486439.pythonanywhere.com/
+ログイン
+id  test2
+pass test2
+adminから入ってログインしないと新規登録できない
+エラーになる

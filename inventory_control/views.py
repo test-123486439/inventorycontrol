@@ -21,7 +21,7 @@ class IndexView(ListView):
 class InventoryDetail(DetailView):
     template_name='post.html'
     model=InventoryPost
-    login_url = '/accounts/login/'
+    login_url = '/login/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -40,7 +40,7 @@ class InventoryCreateView(LoginRequiredMixin, CreateView):
     form_class = InventoryPostForm
     template_name = 'post_form.html'
     success_url = reverse_lazy('inventory:index')
-    login_url = '/accounts/login/'   
+    login_url = '/login/'   
 
     def form_valid(self, form):
         form.instance.user = self.request.user
