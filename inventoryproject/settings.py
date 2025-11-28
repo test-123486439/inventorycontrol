@@ -128,3 +128,9 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'te2195094@gmail.com' #メールの送信元のアドレス
+EMAIL_HOST = 'smtp.gmail.com' #GmailのSMTPサーバー
+EMAIL_PORT = 587 #SMTP
+EMAIL_HOST_USER = 'te2195094@gmail.com' #Gmailのアドレス
+EMAIL_HOST_PASSWORD = 'wvfmoxijqikjaddr' #Gmailのアプリ用パスワード
+EMAIL_USE_TLS = True #SMTPサーバーと通信する際にTLS（セキュア）接続を使う

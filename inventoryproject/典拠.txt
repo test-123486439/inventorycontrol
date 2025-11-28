@@ -1,4 +1,4 @@
-<!-- 静的ファイルのデプロイ方法 -->
+<!-- 静的ファイル、テンプレートののデプロイ方法 -->
 https://docs.djangoproject.com/en/5.0/howto/static-files/deployment/
 https://help.pythonanywhere.com/pages/DeployExistingDjangoProject/
 https://help.pythonanywhere.com/pages/DjangoStaticFiles/
@@ -12,5 +12,9 @@ https://test123486439.pythonanywhere.com/
 ログイン
 id  test
 pass test
+
+
+説明
+ログインすると削除、在庫の新規登録できる
 adminから入ってログインしないと新規登録できない
 エラーになる
